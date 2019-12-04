@@ -12,6 +12,16 @@ function generateId() {
   );
 }
 
+
+/* 
+IDEAS
+------------
+Copy list of bonuses to clipboard
+Randomise bonuses for opening order
+On delete - Input bonus amount / track profit
+
+*/
+
 function App() {
   
   //get initial bonses from ls. Setting as a function runs only when called.
@@ -20,10 +30,10 @@ function App() {
   //state
   const [bonuses, setBonuses] = React.useState(initialBonuses);
   const [input, setInput] = React.useState("");
-  const [value, setValue] = React.useState("5");
+  const [value, setValue] = React.useState("0");
 
   const handleSubmit = () => {
-    if(input === ''){
+    if(input === '' || value === 0){
       return;
     }
     const id = generateId();
@@ -60,7 +70,7 @@ function App() {
       :
         bonuses.map(({ text, value, id }) => (
           <div className="bonus" key={id}>
-            <span className="game">{text}</span>
+            <span className="game">🎰{text}</span>
             <span className="value">£{value}</span>
             <button onClick={() => removeTodo(id)}>X</button>
           </div>

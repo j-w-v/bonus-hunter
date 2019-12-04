@@ -8,7 +8,7 @@ const Input = (props) => {
           type="text"
           value={props.value}
           onChange={e => props.setInput(e.target.value)}
-          placeholder="Game Name..."
+          placeholder="🎰 Game Name..."
         />
         </div>
      );
