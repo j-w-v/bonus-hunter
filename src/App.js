@@ -20,7 +20,7 @@ function App() {
   //state
   const [bonuses, setBonuses] = React.useState(initialBonuses);
   const [input, setInput] = React.useState("");
-  const [value, setValue] = React.useState("£5");
+  const [value, setValue] = React.useState("5");
 
   const handleSubmit = () => {
     const id = generateId();
@@ -32,6 +32,7 @@ function App() {
       })
     );
     setInput("");
+    setValue(0);
   };
 
 // set bonuses in localstorage when bonus state changes.
@@ -43,20 +44,20 @@ function App() {
 
   return (
     <Layout>
-    <div>
+      
       <Input setInput={setInput} value={input} />
-      <Select setValue={setValue}/>
-      <button onClick={handleSubmit}>Submit</button>
-      
-      
+      <Select setValue={setValue} value={value}/>
+      <button onClick={handleSubmit}>Add Bonus</button>
+      <div className="bonuses">
+      <h2>Bonuses</h2>
         {bonuses.map(({ text, value, id }) => (
-          <div key={id}>
-            <span>{text}</span>
-            <span>{value}</span>
+          <div className="bonus" key={id}>
+            <span className="game">{text}</span>
+            <span className="value">£{value}</span>
             <button onClick={() => removeTodo(id)}>X</button>
           </div>
         ))}
-    </div>
+        </div>
     </Layout>
   );
 }
