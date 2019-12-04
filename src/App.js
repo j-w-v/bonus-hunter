@@ -23,6 +23,9 @@ function App() {
   const [value, setValue] = React.useState("5");
 
   const handleSubmit = () => {
+    if(input === ''){
+      return;
+    }
     const id = generateId();
     setBonuses(bonuses =>
       bonuses.concat({
@@ -49,14 +52,21 @@ function App() {
       <Select setValue={setValue} value={value}/>
       <button onClick={handleSubmit}>Add Bonus</button>
       <div className="bonuses">
-      <h2>Bonuses</h2>
-        {bonuses.map(({ text, value, id }) => (
+      <h2>Bonuses : {bonuses.length}</h2>
+
+      {bonuses.length === 0 
+      ? 
+      <p>You have no bonuses! Add some using the fields above.</p> 
+      :
+        bonuses.map(({ text, value, id }) => (
           <div className="bonus" key={id}>
             <span className="game">{text}</span>
             <span className="value">£{value}</span>
             <button onClick={() => removeTodo(id)}>X</button>
           </div>
-        ))}
+        ))
+      }
+        
         </div>
     </Layout>
   );
